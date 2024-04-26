@@ -4,6 +4,7 @@ import com.micro.RFIDServer.service.impl.RfidArtifactServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 public class RfidApi{
@@ -38,5 +39,11 @@ public class RfidApi{
     public int getRfidArtifactById(@PathVariable("rfid_code") String code)
     {
         return rfidArtifactService.rfidIsActivo(code);
+    }
+
+    @GetMapping("/rfids")
+    public List<RfidArtifact> getRfids()
+    {
+        return rfidArtifactService.getRfids();
     }
 }

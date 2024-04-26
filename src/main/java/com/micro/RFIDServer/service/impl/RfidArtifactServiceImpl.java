@@ -2,6 +2,7 @@ package com.micro.RFIDServer.service.impl;
 import com.micro.RFIDServer.model.RfidArtifact;
 import com.micro.RFIDServer.service.RfidArtifactService;
 import java.util.Optional;
+import java.util.List;
 import com.micro.RFIDServer.repository.RfidArtifactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,10 @@ public class RfidArtifactServiceImpl implements RfidArtifactService{
             return rfid.get().getId();
         }
         return 0;
+    }
+
+    @Override
+    public List<RfidArtifact> getRfids(){
+        return (List<RfidArtifact>)rfidArtifactRepository.findAll();
     }
 }

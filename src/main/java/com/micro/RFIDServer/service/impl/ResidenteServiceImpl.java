@@ -2,6 +2,7 @@ package com.micro.RFIDServer.service.impl;
 import com.micro.RFIDServer.model.Residente;
 import com.micro.RFIDServer.service.ResidenteService;
 import java.util.Optional;
+import java.util.List;
 import com.micro.RFIDServer.repository.ResidenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,10 @@ public class ResidenteServiceImpl implements ResidenteService{
     @Override
     public Optional<Residente> getResidenteById(int id){
         return residenteRepository.findById(id);
+    }
+
+    @Override
+    public List<Residente> getResidentes(){
+        return (List<Residente>) residenteRepository.findAll();
     }
 }

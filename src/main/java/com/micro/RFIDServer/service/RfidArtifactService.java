@@ -1,6 +1,7 @@
 package com.micro.RFIDServer.service;
 import com.micro.RFIDServer.model.RfidArtifact;
 import java.util.Optional;
+import java.util.List;
 
 public interface RfidArtifactService{
     public RfidArtifact createRfidArtifact(RfidArtifact rfid_artifact);
@@ -12,4 +13,6 @@ public interface RfidArtifactService{
     public Optional<RfidArtifact> getRfidArtifactById(int id);
 
     public int rfidIsActivo(String rfid_code);
+
+    public List<RfidArtifact> getRfids();
 }

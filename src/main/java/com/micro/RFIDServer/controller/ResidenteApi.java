@@ -4,6 +4,8 @@ import com.micro.RFIDServer.service.impl.ResidenteServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
+import java.util.List;
+
 
 @RestController
 public class ResidenteApi{
@@ -14,6 +16,13 @@ public class ResidenteApi{
     {
         return residenteService.createResidente(residente);
     }
+
+    @GetMapping("/residentes")
+    public List<Residente> getResidentes()
+    {
+        return residenteService.getResidentes();
+    }
+
 
     @GetMapping("/residente/{id}")
     public Optional<Residente> getResidenteById(@PathVariable("id") int id)
