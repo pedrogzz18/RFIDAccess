@@ -5,15 +5,23 @@ import java.util.Optional;
 import com.micro.RFIDServer.repository.IngresoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import com.micro.RFIDServer.service.impl.RfidArtifactServiceImpl;
 
 @Service
 public class IngresoServiceImpl implements IngresoService{
     @Autowired
     private IngresoRepository ingresoRepository;
+    @Autowired
+    private RfidArtifactServiceImpl rfidService;
 
     @Override
     public Ingreso createIngreso(Ingreso ingreso){
+
+        ingreso.setFecha(java.time.LocalDate.now());
+        ingreso.setHora(java.time.LocalTime.now());
         return ingresoRepository.save(ingreso);
+
     }
 
     @Override
@@ -29,5 +37,19 @@ public class IngresoServiceImpl implements IngresoService{
     @Override
     public Optional<Ingreso> getIngresoById(int id){
         return ingresoRepository.findById(id);
+    }
+    @Override
+    public List<Ingreso> getAllIngreso(){
+        return (List<Ingreso>) ingresoRepository.findAll();
+    }
+
+    @Override
+    public Ingreso createIngresoWithRfid(String rfid_code){
+        Ingreso ingreso = new Ingreso();
+        int rfid_id = rfidService.rfidIsActivo(rfid_code);
+        ingreso.setFecha(java.time.LocalDate.now());
+        ingreso.setHora(java.time.LocalTime.now());
+        ingreso.setRfid_id(rfid_id);
+        return ingresoRepository.save(ingreso);
     }
 }

@@ -4,6 +4,9 @@ import com.micro.RFIDServer.service.impl.IngresoServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
+import java.util.List;
+import com.micro.RFIDServer.model.RfidArtifact;
+
 
 @RestController
 public class IngresoApi{
@@ -13,6 +16,19 @@ public class IngresoApi{
     public Ingreso createIngreso(@RequestBody Ingreso ingreso)
     {
         return ingresoService.createIngreso(ingreso);
+    }
+
+    @PostMapping("/ingreso_rfid")
+    public Ingreso createIngresoWithRfid(@RequestBody RfidArtifact rfid)
+    {
+
+        return ingresoService.createIngresoWithRfid(rfid.getRfid_code());
+    }
+
+    @GetMapping("/ingreso")
+    public List<Ingreso> getAllIngreso()
+    {
+        return ingresoService.getAllIngreso();
     }
 
     @GetMapping("/ingreso/{id}")

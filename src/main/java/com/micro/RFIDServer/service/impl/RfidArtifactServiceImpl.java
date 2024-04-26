@@ -35,11 +35,11 @@ public class RfidArtifactServiceImpl implements RfidArtifactService{
     }
 
     @Override
-    public boolean RfidIsActivo(String rfid_code){
+    public int rfidIsActivo(String rfid_code){
         Optional<RfidArtifact> rfid = rfidArtifactRepository.findRfidArtifactByRfid(rfid_code);
         if(rfid != null){
-            return rfid.get().isActivo();
+            return rfid.get().getId();
         }
-        return false;
+        return 0;
     }
 }

@@ -34,9 +34,9 @@ public class RfidApi{
         return "Deleted Successfully";
     }
 
-    @GetMapping("/rfid_code/{rfid_code}")
-    public boolean getRfidArtifactById(@PathVariable("rfid_code") String code)
+    @GetMapping("/rfid_code")
+    public int getRfidArtifactById(@PathVariable("rfid_code") String code)
     {
-        return rfidArtifactService.RfidIsActivo(code);
+        return rfidArtifactService.rfidIsActivo(code);
     }
 }

@@ -11,5 +11,5 @@ public interface RfidArtifactService{
 
     public Optional<RfidArtifact> getRfidArtifactById(int id);
 
-    public boolean RfidIsActivo(String rfid_code);
+    public int rfidIsActivo(String rfid_code);
 }
